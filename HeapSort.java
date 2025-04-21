@@ -1,3 +1,27 @@
+public class SortingDemo {
+    public static void main(String[] args) {
+        int[] array = {45, 23, 11, 89, 77, 98, 4, 28, 65, 43};
+
+        System.out.println("Original Array:");
+        printArray(array);
+
+        HeapSort sorter = new HeapSort();
+        sorter.sort(array);
+
+        System.out.println("\nSorted using Heap Sort:");
+        printArray(array);
+    }
+
+    // Utility function to print the array
+    private static void printArray(int[] arr) {
+        for (int num : arr) {
+            System.out.print(num + " ");
+        }
+        System.out.println();
+    }
+}
+
+// ------------ Your Original HeapSort Class (No Errors) ------------
 class HeapSort {
     public void sort(int[] arr) {
         int n = arr.length;
@@ -21,28 +45,25 @@ class HeapSort {
 
     // Maintains max-heap property
     private void heapify(int[] arr, int n, int i) {
-        int largest = i;       // Initialize largest as root
-        int left = 2 * i + 1;  // Left child
-        int right = 2 * i + 2; // Right child
+        int largest = i;
+        int left = 2 * i + 1;
+        int right = 2 * i + 2;
 
-        // If left child is larger
         if (left < n && arr[left] > arr[largest]) {
             largest = left;
         }
 
-        // If right child is larger
         if (right < n && arr[right] > arr[largest]) {
             largest = right;
         }
 
-        // If root is not largest
         if (largest != i) {
             int swap = arr[i];
             arr[i] = arr[largest];
             arr[largest] = swap;
 
-            // Recursively heapify the affected sub-tree
             heapify(arr, n, largest);
         }
     }
 }
+
